@@ -38,6 +38,34 @@ app.post("/insertcategory",function(req,res){
         res.send("sucseefull added data");
     });
 })
+app.put("/updatecategory/:id", function(req,res){
+    console.log("UpdateCategories", req.body.category, req.params.id);
+
+    var sql = "UPDATE `categorybooks` SET ? WHERE id = ?";
+    db.query(sql, [{ category: req.body.category }, req.params.id], (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        console.log("Result", result);
+        res.send(result);
+
+    })
+
+ })
+ app.get("/deletecategory/:id", (req, res) => {
+    let id = req.params.id;
+    console.log("id", id);
+    let sql = "DELETE FROM `categorybooks` WHERE id='" + id + "'";
+    db.query(sql, function (err, rows) {
+        if (err) {
+            console.log("somthing error in the query");
+        }
+         else {
+            console.log("success");
+            res.json(rows);
+        }
+    });
+})
 app.listen(5002, () => {
     console.log("server is running ");
     
