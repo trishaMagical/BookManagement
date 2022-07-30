@@ -66,6 +66,55 @@ app.put("/updatecategory/:id", function(req,res){
         }
     });
 })
+app.get("/allbooks/:category", function(req,res){
+    console.log("Category Books",req.params.category);
+    var sql= "SELECT  * FROM `books` WHERE  category =?";
+    db.query(sql,[req.params.category],(error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        res.send(result);
+    })
+})
+app.post("/insertbooks/:category", function(req,res){
+    let sql ="INSERT INTO `books` (`category`, `bookname`) VALUES ";
+    sql += "('" + req.params.category + "',";
+    sql += "'" + req.body.bookname + "')";
+    console.log(sql);
+    db.query(sql, function (err) {
+        if (err) throw err;
+        console.log("success");
+        res.send("sucseefull added data");
+    })
+    
+})
+app.put("/updatebooks/:id", (req, res) => {
+    console.log("Update BookName", req.params.id, req.body.bookname);
+    let sql = "UPDATE `books` SET ? WHERE id = ?";
+    db.query(sql, [{ bookname: req.body.bookname }, req.params.id], (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        console.log("Result", result);
+        res.send(result);
+
+    })
+
+})
+app.get("/deletebooks/:id", (req, res) => {
+    let id = req.params.id;
+    console.log("id", id);
+    let sql = "DELETE FROM `books` WHERE id='" + id + "'";
+    db.query(sql, function (err, rows) {
+        if (err) {
+            console.log("somthing error in the query");
+        }
+         else {
+            console.log("success");
+            res.json(rows);
+        }
+    });
+})
 app.listen(5002, () => {
     console.log("server is running ");
     
