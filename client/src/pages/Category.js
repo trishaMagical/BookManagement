@@ -21,7 +21,7 @@ export default class Category extends Component {
           .get(`http://localhost:5002/allcategory`)
     
         console.log("post", post.data);
-        this.setState( post.data )
+        this.setState( {data:post.data} )
         
       }
       addCategory = async () => {
@@ -44,7 +44,7 @@ export default class Category extends Component {
         let ind= data.findIndex(s1=>s1.id===id)
         console.log("Index", ind,id);
         let obj= data[ind]
-        obj["categoryname"]= e.target.value
+        obj["category"]= e.target.value
         console.log("OBJ", obj);
         data[ind]=obj
        this.setState({data})
@@ -119,10 +119,10 @@ export default class Category extends Component {
             </div>
             <div>
               
-            <Link to={"/Todo?categoryname="+val.categoryname}  >
-          <button >Go To Todo</button>
+          
+            <Link to={"/Todo?category="+val.category}  >
+          <button>Go To Book</button>
         </Link>
-             
               
             </div>
           </div>
