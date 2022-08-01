@@ -89,7 +89,7 @@ const SignUp = (props) => {
             }).catch((err)=> toast.error(err.response.data))
            
             } else{
-                await axios.post(`http://localhost:5000/updateuser/${ids}`, 
+                await axios.post(`http://localhost:5002/updateuser/${id}`, 
                 state
             ).then(()=>{
                 setState({firstname:"",email:"",password:""})

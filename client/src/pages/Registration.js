@@ -7,16 +7,18 @@ const Registration = () => {
             <h1>Registration Page</h1>
             <form>
                 <h2>New User ??</h2>
-                <Link to="SignUp">
-                    <button class="button1">Sign Up</button>
-                </Link>
+                <a href='/SignUp'>
+                <input type="button2" value="SignUp"/>
+                
+                </a>
 
 
                 <br />
                 <h2>Already Sign Up</h2>
-                <Link to="/login/user">
-                    <button class="button2">Login</button>
-                </Link>
+                <a href='/login'>
+                <input type="button1" value="Login"/>
+                
+                </a>
             </form>
 
 
