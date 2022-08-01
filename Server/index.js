@@ -31,18 +31,36 @@ app.post("/addNewlogin", function (req, res) {
         res.send("sucseefull added data");
     });
 })
+//Update User
 app.put("/updateuser/:id", (req, res) => {
-    console.log("Update bookmanagementlogin", req.params.id);
-    let sql = "UPDATE `bookmanagementlogin` SET ? WHERE id = ?";
-    db.query(sql, [{  }, req.params.id], (error, result) => {
-        if (error) {
-            console.log(error);
+    console.log("Server started",req.body);
+    var sql="UPDATE `bookmanagementlogin` SET ";
+    sql+="`firstname`='"+req.body.firstname+"',";
+    sql+="`email`='"+req.body.email+"',";
+    sql+="`password`='"+req.body.password+"' ";
+    sql+="WHERE `bookmanagementlogin`.`id`='"+req.params.id+"'";
+  console.log(sql);
+  db.query(sql,function(err){
+  if(err) throw err;
+  console.log("success");
+  res.send("sucseefull Updated data")
+  });
+
+})
+//Delete user
+app.get("/deleteuser/:id", (req, res) => {
+    let id = req.params.id;
+    console.log("id", id);
+    let sql = "DELETE FROM `bookmanagementlogin` WHERE id='" + id + "'";
+    db.query(sql, function (err, rows) {
+        if (err) {
+            console.log("somthing error in the query");
         }
-        console.log("Result", result);
-        res.send(result);
-
-    })
-
+         else {
+            console.log("success");
+            res.json(rows);
+        }
+    });
 })
 //all category books
 app.get("/allcategory", function(req,res){
@@ -82,6 +100,7 @@ app.put("/updatecategory/:id", function(req,res){
     })
 
  })
+ 
  //delete category
  app.get("/deletecategory/:id", (req, res) => {
     let id = req.params.id;
