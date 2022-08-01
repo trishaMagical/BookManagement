@@ -17,10 +17,13 @@ export default class Todo extends Component {
         let category = query.get("category")
         console.log("categoryname", category);
 
+        console.log("Trisha", this.state.input);
+        const data = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("data", data);
         
 
         let post = await axios
-            .get(`http://localhost:5002/allbooks/${category}`)
+            .get(`http://localhost:5002/allbooks/${data.email}/${category}`)
 
         console.log("Datapost", post.data);
         this.setState({data:post.data})
@@ -32,12 +35,14 @@ export default class Todo extends Component {
         let category = query.get("category")
         console.log("categoryname", category);
 
-        console.log("Trisha", this.state.input);
       
+        console.log("Trisha", this.state.input);
+        const data = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("data", data);
         
 
         axios
-            .post(`http://localhost:5002/insertbooks/${category}`,
+            .post(`http://localhost:5002/insertbooks/${data.email}/${category}`,
                 { bookname: this.state.input },
                 window.location = "Todo?category=" + category
 
@@ -94,6 +99,26 @@ export default class Todo extends Component {
 
     render() {
         return (
+            <>
+            <nav className="navbar navbar-expand-lg navbar-light bg-danger ">
+            <a className="navbar-brand text-white" href="#">Welcome</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                    {/* <li className="nav-item active">
+                        <a className="nav-link text-white" href="/Home">Profile </a>
+                    </li> */}
+                    <li className="nav-item ">
+                        <a className="nav-link text-white" href="/Category">Category</a>
+                    </li>
+                    <li className="nav-item ms-auto">
+                        <a className="nav-link text-white" href="/logout">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
             <div><h1>Book Name</h1>
                 <input
                     placeholder="Add a Book Name"
@@ -145,6 +170,8 @@ export default class Todo extends Component {
 
 
             </div>
+            </>
+            
         )
     }
 }

@@ -17,6 +17,19 @@ const db = mysql.createConnection({
     password: "",
     database: "crud_project",
 });
+//See All the Api's
+app.get("/api/get/:id", (req, res) => {
+    const { id } = req.params;
+    const sqlGet = "SELECT * FROM `bookmanagementlogin` WHERE id =?";
+    db.query(sqlGet, id, (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        // console.log("Result", result);
+        res.send(result);
+    })
+
+})
 //add new user
 app.post("/addNewlogin", function (req, res) {
     console.log("Server started", req.body);
@@ -62,11 +75,22 @@ app.get("/deleteuser/:id", (req, res) => {
         }
     });
 })
+app.get("/api/login/:email/:password", (req, res) => {
+    console.log("Server Sarted");
+    let sqlLogin = "SELECT  `email`,`firstname`  FROM `bookmanagementlogin` WHERE email=? AND password = ?";
+    db.query(sqlLogin, [req.params.email, req.params.password], (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        // console.log("Result", result);
+        res.send(result);
+    })
+})
 //all category books
-app.get("/allcategory", function(req,res){
-    console.log("category list");
-    var sql= "SELECT  * FROM categorybooks";
-    db.query(sql,(error, result) => {
+app.get("/allcategory/:email", function(req,res){
+    console.log("category list according to email id");
+    var sql= "SELECT  * FROM `categorybooks` WHERE email =?";
+    db.query(sql,[req.params.email],(error, result) => {
         if (error) {
             console.log(error);
         }
@@ -74,16 +98,32 @@ app.get("/allcategory", function(req,res){
     })
 })
 //add category
-app.post("/insertcategory",function(req,res){
-    console.log("Insert Category");
-    let sql = "INSERT INTO `categorybooks` (`category`) VALUES ";
-    sql += "('" + req.body.category + "')";
-    console.log(sql);
-    db.query(sql, function (err) {
-        if (err) throw err;
-        console.log("success");
-        res.send("sucseefull added data");
-    });
+app.post("/insertcategory/:email",function(req,res){
+    console.log("Server started", req.body.category);
+    
+    let categories = "SELECT * FROM `categorybooks` WHERE email=? AND category=? ";
+    db.query(categories, [req.params.email, req.body.category], (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        console.log("Result", result);
+        //res.send(result);
+        if (result.length === 0) {
+            let sql = "INSERT INTO `categorybooks` (`email`,`category`) VALUES ";
+            sql += "('" + req.params.email + "',";
+            sql += "'" + req.body.category + "')";
+            console.log(sql);
+            db.query(sql, function (err) {
+                if (err) throw err;
+                console.log("success");
+                res.send("sucseefull added data");
+            });
+        }
+        else {
+            res.send (" Categoryname Already exist");
+        }
+    })
+    
 })
 //update category
 app.put("/updatecategory/:id", function(req,res){
@@ -117,10 +157,10 @@ app.put("/updatecategory/:id", function(req,res){
     });
 })
 //all books according to the category
-app.get("/allbooks/:category", function(req,res){
-    console.log("Category Books",req.params.category);
-    var sql= "SELECT  * FROM `books` WHERE  category =?";
-    db.query(sql,[req.params.category],(error, result) => {
+app.get("/allbooks/:email/:category", function(req,res){
+    console.log("category list according to email id");
+    var sql= "SELECT  * FROM `books` WHERE email =? AND category =?";
+    db.query(sql,[req.params.email,req.params.category],(error, result) => {
         if (error) {
             console.log(error);
         }
@@ -128,15 +168,33 @@ app.get("/allbooks/:category", function(req,res){
     })
 })
 //add books according to the category
-app.post("/insertbooks/:category", function(req,res){
-    let sql ="INSERT INTO `books` (`category`, `bookname`) VALUES ";
-    sql += "('" + req.params.category + "',";
-    sql += "'" + req.body.bookname + "')";
-    console.log(sql);
-    db.query(sql, function (err) {
-        if (err) throw err;
-        console.log("success");
-        res.send("sucseefull added data");
+app.post("/insertbooks/:email/:category", function(req,res){
+    console.log("Trisha");
+    console.log("Server started", req.body.bookname);
+    
+    let todos = "SELECT * FROM `books` WHERE email=? AND category=?AND bookname=?  ";
+    db.query(todos, [req.params.email,req.params.category, req.body.bookname,], (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+        console.log("Result", result);
+        //res.send(result);
+        if (result.length === 0) {
+            let sql = "INSERT INTO `books` ( `category`,`bookname`,`email`) VALUES ";
+            sql += "('" + req.params.category + "',";
+            sql += "'" + req.body.bookname + "',";
+            sql += "'" + req.params.email + "')";
+            console.log(sql);
+            db.query(sql, function (err) {
+                if (err) throw err;
+                console.log("success");
+                res.send("sucseefull added data");
+            });
+        }
+        else {
+            res.send ("Already exist");
+        }
+    
     })
     
 })

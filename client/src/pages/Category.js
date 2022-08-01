@@ -15,19 +15,25 @@ export default class Category extends Component {
 
     }
     async componentDidMount() {
-
+        console.log("Trisha", this.state.input);
+        const data = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("data", data);
+    
 
         let post = await axios
-            .get(`http://localhost:5002/allcategory`)
+            .get(`http://localhost:5002/allcategory/${data.email}`)
 
         console.log("post", post.data);
         this.setState({ data: post.data })
 
     }
     addCategory = async () => {
-
+        console.log("Trisha", this.state.input);
+        const data = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("data", data);
+    
         axios
-            .post(`http://localhost:5002/insertcategory`,
+            .post(`http://localhost:5002/insertcategory/${data.email}`,
                 { category: this.state.input },
                 window.location = "/Category"
             )
@@ -73,6 +79,26 @@ export default class Category extends Component {
     }
     render() {
         return (
+            <>
+             <nav className="navbar navbar-expand-lg navbar-light bg-danger ">
+            <a className="navbar-brand text-white" href="#">Welcome</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                    {/* <li className="nav-item active">
+                        <a className="nav-link text-white" href="/Home">Profile </a>
+                    </li> */}
+                    <li className="nav-item ">
+                        <a className="nav-link text-white" href="/Category">Category</a>
+                    </li>
+                    <li className="nav-item ms-auto">
+                        <a className="nav-link text-white" href="/logout">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
             <div><h1>Category</h1>
                 <input
                     placeholder="Add a Book Category"
@@ -129,6 +155,9 @@ export default class Category extends Component {
 
                 )}
             </div>
+            
+            </>
+          
         )
     }
 }

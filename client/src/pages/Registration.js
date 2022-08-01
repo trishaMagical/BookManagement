@@ -14,7 +14,7 @@ const Registration = () => {
 
                 <br />
                 <h2>Already Sign Up</h2>
-                <Link to="/login">
+                <Link to="/login/user">
                     <button class="button2">Login</button>
                 </Link>
             </form>
