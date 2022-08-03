@@ -15,7 +15,7 @@ const db = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "",
-    database: "crud_project",
+    database: "crud_projects",
 });
 //See All the Api's
 app.get("/api/get/:id", (req, res) => {
@@ -126,11 +126,11 @@ app.post("/insertcategory/:email",function(req,res){
     
 })
 //update category
-app.put("/updatecategory/:id", function(req,res){
-    console.log("UpdateCategories", req.body.category, req.params.id);
+app.put("/updatecategory/:id/:email", function(req,res){
+    console.log("UpdateCategories", req.body.category, req.params.id,req.params.email);
 
     var sql = "UPDATE `categorybooks` SET ? WHERE id = ?";
-    db.query(sql, [{ category: req.body.category }, req.params.id], (error, result) => {
+    db.query(sql, [{ category: req.body.category }, req.params.id,req.params.email], (error, result) => {
         if (error) {
             console.log(error);
         }
@@ -142,17 +142,26 @@ app.put("/updatecategory/:id", function(req,res){
  })
  
  //delete category
- app.get("/deletecategory/:id", (req, res) => {
-    let id = req.params.id;
+ app.get("/deletecategory/:email/:category", (req, res) => {
+    let email = req.params.email;
+    let category = req.params.category;
     console.log("id", id);
-    let sql = "DELETE FROM `categorybooks` WHERE id='" + id + "'";
+    let sql = "DELETE FROM `categorybooks` WHERE email='" + email + "' AND  category='" + category + "'";
     db.query(sql, function (err, rows) {
         if (err) {
             console.log("somthing error in the query");
         }
          else {
-            console.log("success");
-            res.json(rows);
+            let sql2 ="DELETE FROM `categorybooks` WHERE email='" + email + "' AND category='"+category+"'";
+            db.query(sql2, function (err, rows){
+                if(err){
+                    console.log("somthing error in the query");
+                }
+                else{
+                    console.log("succesful");
+                    res.json(rows);
+                }
+            })
         }
     });
 })
@@ -199,10 +208,10 @@ app.post("/insertbooks/:email/:category", function(req,res){
     
 })
 // update books 
-app.put("/updatebooks/:id", (req, res) => {
-    console.log("Update BookName", req.params.id, req.body.bookname);
-    let sql = "UPDATE `books` SET ? WHERE id = ?";
-    db.query(sql, [{ bookname: req.body.bookname }, req.params.id], (error, result) => {
+app.put("/updatebooks/:id/:email", (req, res) => {
+    console.log("Update BookName", req.params.id, req.body.bookname,req.params.email);
+    let sql = "UPDATE `books` SET ? WHERE id = ? AND email =?";
+    db.query(sql, [{ bookname: req.body.bookname }, req.params.id,req.params.email], (error, result) => {
         if (error) {
             console.log(error);
         }
@@ -213,10 +222,11 @@ app.put("/updatebooks/:id", (req, res) => {
 
 })
 // delete books
-app.get("/deletebooks/:id", (req, res) => {
+app.get("/deletebooks/:id/:email", (req, res) => {
     let id = req.params.id;
+    let email = req.params.email;
     console.log("id", id);
-    let sql = "DELETE FROM `books` WHERE id='" + id + "'";
+    let sql = "DELETE FROM `books` WHERE id='" + id + "' AND email='" + email + "' ";
     db.query(sql, function (err, rows) {
         if (err) {
             console.log("somthing error in the query");
