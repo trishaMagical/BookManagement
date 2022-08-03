@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import { Link } from 'react-router-dom'
+import "./Category.css"
 
 
 export default class Category extends Component {
@@ -18,7 +19,7 @@ export default class Category extends Component {
         console.log("Trisha", this.state.input);
         const data = JSON.parse(localStorage.getItem("userInfo"));
         console.log("data", data);
-    
+
 
         let post = await axios
             .get(`http://localhost:5002/allcategory/${data.email}`)
@@ -31,7 +32,7 @@ export default class Category extends Component {
         console.log("Trisha", this.state.input);
         const data = JSON.parse(localStorage.getItem("userInfo"));
         console.log("data", data);
-    
+
         axios
             .post(`http://localhost:5002/insertcategory/${data.email}`,
                 { category: this.state.input },
@@ -60,19 +61,28 @@ export default class Category extends Component {
         let data = [...this.state.data]
         let obj = data.find(s1 => s1.id === id)
         console.log("id", id);
+
+        console.log("Trisha", this.state.input);
+        const datavalue = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("datavalue", datavalue);
+
         axios
-            .put(`http://localhost:5002/updatecategory/${id}`,
+            .put(`http://localhost:5002/updatecategory/${id}/${datavalue.email}`,
                 { category: obj.category }
 
             )
         this.setState({ Index: -1 })
         window.location = "/Category"
     }
-    deleteCategory = async (id) => {
+    deleteCategory = async (category) => {
 
-        console.log("ABCDRtyxse", id);
+        console.log("Trisha", this.state.input);
+        const data = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("data", data);
+
+        console.log("ABCDRtyxse", category);
         axios
-            .get(`http://localhost:5002/deletecategory/${id}`,
+            .get(`http://localhost:5002/deletecategory/${data.email}/${category}`,
 
                 window.location = "/Category"
             )
@@ -80,84 +90,97 @@ export default class Category extends Component {
     render() {
         return (
             <>
-             <nav className="navbar navbar-expand-lg navbar-light bg-danger ">
-            <a className="navbar-brand text-white" href="#">Welcome</a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    {/* <li className="nav-item active">
+                <nav className="navbar navbar-expand-lg navbar-light bg-danger ">
+                    <a className="navbar-brand text-white" href="#">Welcome</a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav">
+                            {/* <li className="nav-item active">
                         <a className="nav-link text-white" href="/Home">Profile </a>
                     </li> */}
-                    <li className="nav-item ">
-                        <a className="nav-link text-white" href="/Category">Category</a>
-                    </li>
-                    <li className="nav-item ms-auto">
-                        <a className="nav-link text-white" href="/logout">Log Out</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-            <div><h1>Category</h1>
-                <input
-                    placeholder="Add a Book Category"
-                    name="text"
-                    className="todo-input"
-
-                    onChange={this.handleChange}
-                    value={this.state.input}
-                />
-                <button onClick={this.addCategory} className="todo-button">
-                    Add Category
-                </button>
-
-                {this.state.data.map((val, index) =>
-                    <div key={index}>
-
-                        {val.category}
-
-                        <div>
-                            <button onClick={() => this.edit(val.id)}>Edit</button>
-                            {
-                                val.id === this.state.edit ?
-                                    <div>
-                                        <input
-                                            value={val.category}
-                                            placeholder="Update a Category"
-                                            name="text"
-                                            className="todo-input"
-                                            onChange={(e) => this.handleEditChange(e, val.id)}
-
-                                        />
-                                        <button onClick={() => this.editCategory(val.id)}>Save</button>
-                                    </div>
-
-                                    :
-                                    <div>
-                                    </div>
-
-                            }
-
-                        </div>
-                        <div>
-                            <button onClick={() => this.deleteCategory(val.id)}>Delete</button>
-                        </div>
-                        <div>
-
-
-                            <a href={"/Todo?category=" + val.category}  >
-                                <button>Go To Book</button>
-                            </a>
-
-                        </div>
+                            <li className="nav-item ">
+                                <a className="nav-link text-white" href="/Category">Category</a>
+                            </li>
+                            <li className="nav-item ms-auto">
+                                <a className="nav-link text-white" href="/logout">Log Out</a>
+                            </li>
+                        </ul>
                     </div>
+                </nav>
+                <div ><h1>Category</h1>
 
-                )}
-            </div>
-            
+                    <input
+                        placeholder="Add a Book Category"
+                        name="text"
+                        className="todo-input"
+
+                        onChange={this.handleChange}
+                        value={this.state.input}
+                    />
+                    <button className="btn btn-add" onClick={this.addCategory} >
+                        Add Category
+                    </button>
+                    <div className='tableclass'>
+                        <table className=" styled-table"  >
+                            <thead>
+                                <tr>
+                                    <th style={{ textAlign: "right" }}>Category</th>
+
+                                    <th style={{ textAlign: "center" }}>Actions</th>
+                                </tr>
+
+                            </thead>
+                            <tbody >
+                                {this.state.data.map((val, index) => {
+
+                                    return (
+                                        <tr >
+                                            <td key={index}>
+                                                {val.category}
+                                                {
+                                                    val.id === this.state.edit ?
+                                                        <div>
+                                                            <input
+                                                                value={val.category}
+                                                                placeholder="Update a Category"
+                                                                name="text"
+                                                                className="todo-input"
+                                                                onChange={(e) => this.handleEditChange(e, val.id)}
+
+                                                            />
+                                                            <button onClick={() => this.editCategory(val.id)}>Save</button>
+                                                        </div>
+
+                                                        :
+                                                        <div>
+                                                        </div>
+
+                                                }
+                                            </td>
+
+                                            <td>
+                                                <button className="btn btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
+
+
+                                                <button className="btn btn-delete" onClick={() => this.deleteCategory(val.category)}>Delete</button>
+                                                <a href={"/Todo?category=" + val.category}  >
+                                                    <button className="btn btn-view">Go To Book</button>
+                                                </a>
+                                            </td>
+
+
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </>
-          
+
         )
     }
 }
