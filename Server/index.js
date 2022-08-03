@@ -145,14 +145,14 @@ app.put("/updatecategory/:id/:email", function(req,res){
  app.get("/deletecategory/:email/:category", (req, res) => {
     let email = req.params.email;
     let category = req.params.category;
-    console.log("id", id);
-    let sql = "DELETE FROM `categorybooks` WHERE email='" + email + "' AND  category='" + category + "'";
+    console.log("category", category);
+    let sql = "DELETE FROM `categorybooks` WHERE email='" + email + "' AND category='"+category+"'";
     db.query(sql, function (err, rows) {
         if (err) {
             console.log("somthing error in the query");
         }
          else {
-            let sql2 ="DELETE FROM `categorybooks` WHERE email='" + email + "' AND category='"+category+"'";
+            let sql2 ="DELETE FROM `books` WHERE email='" + email + "' AND category='"+category+"'";
             db.query(sql2, function (err, rows){
                 if(err){
                     console.log("somthing error in the query");
@@ -162,6 +162,7 @@ app.put("/updatecategory/:id/:email", function(req,res){
                     res.json(rows);
                 }
             })
+            
         }
     });
 })

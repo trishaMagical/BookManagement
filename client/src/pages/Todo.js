@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import "./Category.css"
 export default class Todo extends Component {
     state = {
         input: "",
@@ -62,9 +63,12 @@ export default class Todo extends Component {
         let data = [...this.state.data]
         let obj = data.find(s1 => s1.id === id)
         console.log("id", id);
-
+        
+        console.log("Trisha", this.state.input);
+        const datavalue = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("datavalue", datavalue);
         axios
-            .put(`http://localhost:5002/updatebooks/${id}`,
+            .put(`http://localhost:5002/updatebooks/${id}/${datavalue.email}`,
                 { bookname: obj.bookname }
 
             )
@@ -87,10 +91,14 @@ export default class Todo extends Component {
         const query = new URLSearchParams(this.props.location.search);
         let category = query.get("category")
         console.log("categoryname", category);
+        
+        console.log("Trisha", this.state.input);
+        const data = JSON.parse(localStorage.getItem("userInfo"));
+        console.log("data", data);
 
         console.log("ABCDRtyxse", id);
         axios
-            .get(`http://localhost:5002/deletebooks/${id}`,
+            .get(`http://localhost:5002/deletebooks/${id}/${data.email}`,
 
                 window.location = "Todo?category=" + category
             )
@@ -127,47 +135,68 @@ export default class Todo extends Component {
                     value={this.state.input}
                     onChange={this.handleChange}
                 />
-                <button onClick={this.addTodo} className="todo-button">
+                <button onClick={this.addTodo} className="btn btn-add">
                     Add Books
                 </button>
+               <div className='tableclass'>
+               <table className=" styled-table"  >
+               <thead>
+                                <tr>
+                                    <th style={{ textAlign: "center" }}>BookName</th>
+
+                                    <th style={{ textAlign: "center" }}>Actions</th>
+                                </tr>
+
+                </thead>
+                <tbody>
                 {
-                        this.state.data.map((val, index) =>
-                            <div key={index}>
-                                {val.bookname}
+                        this.state.data.map((val, index) =>{
+                            return(
+                                <tr >
+                                  <td key={index}>
+                                        { val.bookname}    
+                                                {
+                                                    val.id === this.state.edit ?
+                                                        <div>
+                                                            <input
+                                                                value={val.bookname}
+                                                                placeholder="Update a Bookname"
+                                                                name="text"
+                                                                className="todo-input"
+                                                                onChange={(e) => this.handleEditChange(e, val.id)}
 
-                                <div>
-                                    <button onClick={() => this.edit(val.id)}>Edit</button>
-                                    {
-                                        val.id === this.state.edit ?
-                                            <div>
-                                                <input
-                                                    value={val.bookname}
-                                                    placeholder="Update a Book Name"
-                                                    name="text"
-                                                    className="todo-input"
-                                                    onChange={(e) => this.handleEditChange(e, val.id)}
+                                                            />
+                                                            <button onClick={() => this.editTodo(val.id)}>Save</button>
+                                                        </div>
 
-                                                />
-                                                <button onClick={() => this.editTodo(val.id)}>Save</button>
-                                            </div>
+                                                        :
+                                                        <div>
+                                                        </div>
 
-                                            :
-                                            <div>
-                                            </div>
+                                                }
+                                            </td>
 
-                                    }
-
-                                </div>
-
-                                <div>
-                                    <button onClick={() => this.deleteTodo(val.id)}>Delete</button>
-                                </div>
-                            </div>
+                                            <td>
+                                                <button className="btn btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
 
 
-                        )}
+                                                <button className="btn btn-delete" onClick={() => this.deleteTodo(val.id)}>Delete</button>
+                                                
+                                            </td>
 
-
+  
+                               
+                               </tr>
+                                )
+                       
+                        
+                      
+                            })}
+                
+                
+                </tbody>
+                </table>
+               </div>
 
             </div>
             </>
