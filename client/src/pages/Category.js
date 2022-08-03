@@ -126,7 +126,7 @@ export default class Category extends Component {
                         <table className=" styled-table"  >
                             <thead>
                                 <tr>
-                                    <th style={{ textAlign: "right" }}>Category</th>
+                                    <th style={{ textAlign: "center" }}>Category</th>
 
                                     <th style={{ textAlign: "center" }}>Actions</th>
                                 </tr>
