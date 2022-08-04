@@ -130,7 +130,7 @@ const SignUp = (props) => {
   return (
     <div style={{marginTop: "100px"}}>
         <label className='labelContainer'>Create an account</label>
-        <form className='container' style={{
+        <form  style={{
             margin:"auto",
             padding:"15px",
             maxWidth:"400px",
@@ -154,7 +154,7 @@ const SignUp = (props) => {
         <label  className='emailContainer' htmlFor="email">Email</label>
         <br/>
         <input
-        className='inputbox-style'
+        className='inputbox-Style'
         type="email"
         id="email"
         name="email"
