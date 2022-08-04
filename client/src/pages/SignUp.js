@@ -137,8 +137,9 @@ const SignUp = (props) => {
     }}
     onSubmit={handleSubmit}
     >
-        <label htmlFor="firstName">First_Name</label>
+        <label htmlFor="firstName">FirstName</label>
         <input
+        
         type="text"
         id="name"
         name="name"
@@ -149,6 +150,7 @@ const SignUp = (props) => {
       
         <label htmlFor="email">Email</label>
         <input
+        className='inputbox-Size'
         type="email"
         id="email"
         name="email"
@@ -158,6 +160,7 @@ const SignUp = (props) => {
         />
         <label htmlFor="password">Password</label>
         <input
+        className='inputbox-Size'
         type="text"
         id="password"
         name="password"
