@@ -129,7 +129,7 @@ const SignUp = (props) => {
 
   return (
     <div style={{marginTop: "100px"}}>
-        <label className='labelContainer'>Create An Account</label>
+        <label className='labelContainer'>Create an account</label>
         <form className='container' style={{
             margin:"auto",
             padding:"15px",
@@ -146,38 +146,38 @@ const SignUp = (props) => {
         type="text"
         id="name"
         name="name"
-        placeholder="Your Name...."
+        placeholder="Name"
         value={firstname || ""}
         onChange={handleInputChangeforName}
         />
       
-        <label  className='emailContainer' htmlFor="email"><p>Email</p></label>
+        <label  className='emailContainer' htmlFor="email">Email</label>
         <br/>
         <input
-        className='inputbox-Size'
+        className='inputbox-style'
         type="email"
         id="email"
         name="email"
-        placeholder="abc@example.com"
+        placeholder="Email"
         value={email || ""}
         onChange={handleInputChangeforEmail}
         />
         <br/>
-        <label  className='passwordContainer' htmlFor="password"><p>Password</p></label>
-        <br/>
+        <label  className='passwordContainer' htmlFor="password">Password</label>
+        
         <input
-        className='inputbox-Size'
+        className='inputbox-style'
         type="password"
         id="password"
         name="password"
-        placeholder="********"
+        placeholder="Password"
         value={password || ""}
         onChange={handleInputChangeforPassword}
         />
-        <input type="submit" value="Save"/>
-        <Link to ="/">
+        <input type="submit" value="SignUp"/>
+        <a href="/">
             <input type="button" value="Go Back"/>
-        </Link>
+        </a>
         </form>
         
     </div>
