@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { useHistory,useParams,Link } from 'react-router-dom';
-import "./SignUp.css";
+import "./SignUp.css"
 import axios from 'axios';
 import {toast} from "react-toastify";
 // import { toToastItem } from 'react-toastify/dist/utils';
@@ -128,7 +128,7 @@ const SignUp = (props) => {
 
   return (
     <div style={{marginTop: "100px"}}>
-        <form style={{
+        <form className='container' style={{
             margin:"auto",
             padding:"15px",
             maxWidth:"400px",
@@ -137,7 +137,7 @@ const SignUp = (props) => {
     }}
     onSubmit={handleSubmit}
     >
-        <label htmlFor="firstName">FirstName</label>
+        <label htmlFor="firstName"><p>FirstName</p></label>
         <input
         
         type="text"
@@ -148,23 +148,26 @@ const SignUp = (props) => {
         onChange={handleInputChangeforName}
         />
       
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email"><p>Email</p></label>
+        <br/>
         <input
-        className='inputbox-Size'
+         className='inputbox-Size'
         type="email"
         id="email"
         name="email"
-        placeholder="abc@example.com...."
+        placeholder="abc@example.com"
         value={email || ""}
         onChange={handleInputChangeforEmail}
         />
-        <label htmlFor="password">Password</label>
+        <br/>
+        <label htmlFor="password"><p>Password</p></label>
+        <br/>
         <input
         className='inputbox-Size'
-        type="text"
+        type="password"
         id="password"
         name="password"
-        placeholder="********...."
+        placeholder="********"
         value={password || ""}
         onChange={handleInputChangeforPassword}
         />
