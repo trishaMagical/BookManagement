@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import { useHistory,useParams,Link } from 'react-router-dom';
 import "./SignUp.css"
+
 import axios from 'axios';
 import {toast} from "react-toastify";
 // import { toToastItem } from 'react-toastify/dist/utils';
@@ -128,6 +129,7 @@ const SignUp = (props) => {
 
   return (
     <div style={{marginTop: "100px"}}>
+        <label className='labelContainer'>Create An Account</label>
         <form className='container' style={{
             margin:"auto",
             padding:"15px",
@@ -137,9 +139,10 @@ const SignUp = (props) => {
     }}
     onSubmit={handleSubmit}
     >
-        <label htmlFor="firstName"><p>FirstName</p></label>
+      
+        <label className='nameContainer' htmlFor="firstName">FirstName</label>
         <input
-        
+       
         type="text"
         id="name"
         name="name"
@@ -148,10 +151,10 @@ const SignUp = (props) => {
         onChange={handleInputChangeforName}
         />
       
-        <label htmlFor="email"><p>Email</p></label>
+        <label  className='emailContainer' htmlFor="email"><p>Email</p></label>
         <br/>
         <input
-         className='inputbox-Size'
+        className='inputbox-Size'
         type="email"
         id="email"
         name="email"
@@ -160,7 +163,7 @@ const SignUp = (props) => {
         onChange={handleInputChangeforEmail}
         />
         <br/>
-        <label htmlFor="password"><p>Password</p></label>
+        <label  className='passwordContainer' htmlFor="password"><p>Password</p></label>
         <br/>
         <input
         className='inputbox-Size'

@@ -3,7 +3,36 @@
     margin: 0;
     font-family: sans-serif;
 }
-container{
+body {
+    background: linear-gradient(
+      90deg,
+      rgba(48, 16, 255, 1) 0%,
+      rgba(100, 115, 255, 1) 100%
+    );
+  }
+  .labelContainer{
+    color: aliceblue;
+    font-size: 70px;
+}
+.nameContainer{
+    color: aliceblue;
+    font-size: 30px;
+}
+.passwordContainer{
+    color: aliceblue;
+    font-size: 30px;
+}
+.emailContainer{
+    color: aliceblue;
+    font-size: 30px;
 
-    background: url();
+}
+.inputbox-Size{
+    width: 100%;
+    padding: 8px 0;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
