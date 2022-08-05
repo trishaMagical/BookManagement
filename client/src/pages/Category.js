@@ -109,30 +109,37 @@ export default class Category extends Component {
                         </ul>
                     </div>
                 </nav>
-                <div ><h1>Category</h1>
+                <div style={{ marginTop: "100px" }}>
+                    <label className='labelContainer'>Book Category</label>
 
+                    <br />
                     <input
                         placeholder="Add a Book Category"
                         name="text"
-                        className="todo-input"
+                        className="todo-inputAdd"
 
                         onChange={this.handleChange}
                         value={this.state.input}
                     />
-                    <button className="btn btn-add" onClick={this.addCategory} >
+                    <br />
+                    <br/>
+                    <button className="btn-add" onClick={this.addCategory} >
                         Add Category
                     </button>
                     <div className='tableclass'>
-                        <table className=" styled-table"  >
-                            <thead>
-                                <tr>
-                                    <th style={{ textAlign: "center" }}>Category</th>
 
-                                    <th style={{ textAlign: "center" }}>Actions</th>
-                                </tr>
+                        
+                            <table className=" styled-table" >
+                                <thead>
 
-                            </thead>
-                            <tbody >
+                                    <tr >
+                                        <th style={{ textAlign: "center" }}>Category</th>
+
+                                        <th style={{ textAlign: "center" }}>Actions</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody >
                                 {this.state.data.map((val, index) => {
 
                                     return (
@@ -166,7 +173,7 @@ export default class Category extends Component {
 
                                                 <button className="btn btn-delete" onClick={() => this.deleteCategory(val.category)}>Delete</button>
                                                 <a href={"/Todo?category=" + val.category}  >
-                                                    <button className="btn btn-view">Go To Book</button>
+                                                    <button className="btn btn-view">Go</button>
                                                 </a>
                                             </td>
 
@@ -175,7 +182,8 @@ export default class Category extends Component {
                                     )
                                 })}
                             </tbody>
-                        </table>
+                            </table>
+                       
                     </div>
                 </div>
 
