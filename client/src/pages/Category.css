@@ -11,7 +11,7 @@
     font-family: sans-serif;
 
     width: 100%;
-    height: 20px;
+    height: 40px;
     margin-top: 20px;
     margin: "auto";
     padding: "15px";
@@ -26,34 +26,43 @@ tr {
 
 .styled-table thead tr {
     color: black,
+    
 }
 
 .styled-table th {
-    border: 5px solid #ddd;
+    border: 3px solid #ddd;
     padding: 8px;
-}
+    border-bottom-color: black;
+    border-bottom-width: 3px;
+    font-weight: bold;
 
+}
+.styled-table tbody{
+    font-size: 15px;
+}
 .styled-table td {
-    border: 5px solid #ddd;
+    border: 3px solid #ddd;
     padding: 8px;
 }
 
 .btn-add {
-    background-color: blue;
+    background-color:green;
     color: #ffffff;
     font-weight: bold;
-    width: 10%;
-    height: 10%;
+    border-radius: 5px;
+   border-color: #ddd;
+    height: 40px;
 }
 
 .btn-edit {
-    background-color: blue;
+    background-color:darkblue;
     color: #ffffff;
     font-weight: bold;
-    padding: 5px 5px;
+    padding: 5px 10px;
     border-radius: 5px;
     margin-right: 20px;
     margin-left: 30px;
+    border-color: #ddd;
 }
 
 .btn-delete {
@@ -61,8 +70,9 @@ tr {
     color: #ffffff;
     font-weight: bold;
     border-radius: 5px;
-    
+    padding: 5px 5px;
     margin-right: 20px;
+    border-color: #ddd;
 }
 
 .btn-view {
@@ -71,5 +81,6 @@ tr {
     border-radius: 5px;
     font-weight: bold;
     margin-right: 20px;
-   
+    padding: 5px 10px;
+    border-color: #ddd;
 }

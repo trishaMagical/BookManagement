@@ -121,25 +121,25 @@ export default class Category extends Component {
                         onChange={this.handleChange}
                         value={this.state.input}
                     />
-                    <br />
                     <br/>
+                    <br />
                     <button className="btn-add" onClick={this.addCategory} >
                         Add Category
                     </button>
                     <div className='tableclass'>
 
-                        
-                            <table className=" styled-table" >
-                                <thead>
 
-                                    <tr >
-                                        <th style={{ textAlign: "center" }}>Category</th>
+                        <table className=" styled-table" >
+                            <thead>
 
-                                        <th style={{ textAlign: "center" }}>Actions</th>
-                                    </tr>
+                                <tr >
+                                    <th style={{ textAlign: "center" }}>Category</th>
 
-                                </thead>
-                                <tbody >
+                                    <th style={{ textAlign: "center" }}>Actions</th>
+                                </tr>
+
+                            </thead>
+                            <tbody >
                                 {this.state.data.map((val, index) => {
 
                                     return (
@@ -166,24 +166,26 @@ export default class Category extends Component {
 
                                                 }
                                             </td>
-
                                             <td>
-                                                <button className="btn btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
+                                                <button className="btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
 
-
-                                                <button className="btn btn-delete" onClick={() => this.deleteCategory(val.category)}>Delete</button>
+                                                <button className="btn-delete" onClick={() => this.deleteCategory(val.category)}>Delete</button>
                                                 <a href={"/Todo?category=" + val.category}  >
-                                                    <button className="btn btn-view">Go</button>
+                                                    <button className="btn-view">Go</button>
                                                 </a>
+
+
+
                                             </td>
+
 
 
                                         </tr>
                                     )
                                 })}
                             </tbody>
-                            </table>
-                       
+                        </table>
+
                     </div>
                 </div>
 
