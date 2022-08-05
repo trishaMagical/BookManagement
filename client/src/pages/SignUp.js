@@ -129,30 +129,42 @@ const SignUp = (props) => {
 
   return (
     <div style={{marginTop: "100px"}}>
-        <label className='labelContainer'>Create an account</label>
+        <label className='labelContainer'>Sign Up</label>
         <form  style={{
             margin:"auto",
-            padding:"15px",
-            maxWidth:"400px",
+            // padding:"15px",
+             maxWidth:"400px",
             alignContent:"center"
 
     }}
-    onSubmit={handleSubmit}
-    >
-      
-        <label className='nameContainer' htmlFor="firstName">FirstName</label>
-        <input
+    onSubmit={handleSubmit}>
+        <div className='mainContainer'>
+        <label >Already a member?</label>
+        <a href='/login'>
+            <strong>
+            <label className='loginText'>Log In</label>
+            </strong>
+        
+        </a>
+        </div>
        
+        
+        <br/>
+      
+        <input
+        className='inputbox-Style'
         type="text"
         id="name"
         name="name"
-        placeholder="Name"
+        placeholder="First Name"
         value={firstname || ""}
         onChange={handleInputChangeforName}
         />
-      
-        <label  className='emailContainer' htmlFor="email">Email</label>
         <br/>
+        <br/>
+      
+        
+        
         <input
         className='inputbox-Style'
         type="email"
@@ -163,10 +175,10 @@ const SignUp = (props) => {
         onChange={handleInputChangeforEmail}
         />
         <br/>
-        <label  className='passwordContainer' htmlFor="password">Password</label>
-        
+        <br/>
+       
         <input
-        className='inputbox-style'
+        className='inputbox-Style'
         type="password"
         id="password"
         name="password"
@@ -174,10 +186,10 @@ const SignUp = (props) => {
         value={password || ""}
         onChange={handleInputChangeforPassword}
         />
-        <input type="submit" value="SignUp"/>
-        <a href="/">
-            <input type="button" value="Go Back"/>
-        </a>
+        <br/>
+        <br/>
+        <input className='SignUpbutton' type="submit" value="SignUp"/>
+        
         </form>
         
     </div>
