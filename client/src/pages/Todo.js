@@ -127,7 +127,9 @@ export default class Todo extends Component {
                 </ul>
             </div>
         </nav>
-            <div><h1>Book Name</h1>
+            <div style={{ marginTop: "100px" }}>
+            <label className='labelContainer'>Book Name</label>
+            <br/>
                 <input
                     placeholder="Add a Book Name"
                     name="text"
@@ -135,7 +137,9 @@ export default class Todo extends Component {
                     value={this.state.input}
                     onChange={this.handleChange}
                 />
-                <button onClick={this.addTodo} className="btn btn-add">
+                <br/>
+                <br/>
+                <button onClick={this.addTodo} className="btn-add">
                     Add Books
                 </button>
                <div className='tableclass'>
@@ -149,49 +153,47 @@ export default class Todo extends Component {
 
                 </thead>
                 <tbody>
-                {
-                        this.state.data.map((val, index) =>{
-                            return(
-                                <tr >
-                                  <td key={index}>
-                                        { val.bookname}    
-                                                {
-                                                    val.id === this.state.edit ?
-                                                        <div>
-                                                            <input
-                                                                value={val.bookname}
-                                                                placeholder="Update a Bookname"
-                                                                name="text"
-                                                                className="todo-input"
-                                                                onChange={(e) => this.handleEditChange(e, val.id)}
+                {this.state.data.map((val, index) => {
 
-                                                            />
-                                                            <button onClick={() => this.editTodo(val.id)}>Save</button>
-                                                        </div>
+return (
+    <tr >
+        <td key={index}>
+            {val.bookname}
+            {
+                val.id === this.state.edit ?
+                    <div>
+                        <input
+                            value={val.bookname}
+                            placeholder="Update a BookName"
+                            name="text"
+                            className="todo-input"
+                            onChange={(e) => this.handleEditChange(e, val.id)}
 
-                                                        :
-                                                        <div>
-                                                        </div>
+                        />
+                        <button  className="btn-save"onClick={() => this.editTodo(val.id)}>Save</button>
+                    </div>
 
-                                                }
-                                            </td>
+                    :
+                    <div>
+                    </div>
 
-                                            <td>
-                                                <button className="btn btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
+            }
+        </td>
+        <td>
+            <button className="btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
+
+            <button className="btn-delete" onClick={() => this.deleteTodo(val.id)}>Delete</button>
+           
 
 
-                                                <button className="btn btn-delete" onClick={() => this.deleteTodo(val.id)}>Delete</button>
-                                                
-                                            </td>
 
-  
-                               
-                               </tr>
-                                )
-                       
-                        
-                      
-                            })}
+        </td>
+
+
+
+    </tr>
+)
+})}
                 
                 
                 </tbody>
