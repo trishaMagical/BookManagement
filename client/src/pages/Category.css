@@ -84,3 +84,12 @@ tr {
     padding: 5px 10px;
     border-color: #ddd;
 }
+.btn-save{
+    background-color:green;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-right: 20px;
+    padding: 5px 10px;
+    border-color: #ddd;  
+}

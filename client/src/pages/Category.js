@@ -157,7 +157,7 @@ export default class Category extends Component {
                                                                 onChange={(e) => this.handleEditChange(e, val.id)}
 
                                                             />
-                                                            <button onClick={() => this.editCategory(val.id)}>Save</button>
+                                                            <button className="btn-save" onClick={() => this.editCategory(val.id)}>Save</button>
                                                         </div>
 
                                                         :
