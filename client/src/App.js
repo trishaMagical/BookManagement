@@ -7,7 +7,7 @@ import './App.css';
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Category from "./pages/Category";
-import Todo from "./pages/Todo";
+import Books from "./pages/Books";
 
 function App() {
   
@@ -21,7 +21,7 @@ function App() {
           <Route exact path="/" component ={SignUp} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/Category" component={Category} />
-          <Route exact path="/Todo" component={Todo} />
+          <Route exact path="/Books" component={Books} />
           <Route exact path="/logout" component={Login} />
           
           
