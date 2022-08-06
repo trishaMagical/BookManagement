@@ -40,9 +40,6 @@ const Login = () => {
 
       }}
         onSubmit={loginSubmit}>
-
-
-
         <br />
         <input
           className='inputboxLoginstyle'

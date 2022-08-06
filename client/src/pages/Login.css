@@ -1,24 +1,24 @@
+
+:root{
+    --colorValue:brown;
+    --fontstyleValue:Georgia, 'Times New Roman', Times, serif;
+}
 .loginlabelContainer{
-color: grey;
-font-size: 50px;
-font-weight: 500;
-font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 50px;
+    color:var(--colorValue)
 }
 .inputboxLoginstyle{
-    font-size: 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
     width: 100%;
-    font-style: italic;
+    font-size: 15px;
+    font-weight: bold;
 }
 .secondContainer{
     font-size: 20px;
-    color: grey;
-    
 }
 .signupTextstyle{
-    color:cornflowerblue
-}
-.submitbuttonstyle{
-    
-    font-size:20px ;
-    font-weight: bold;
+    font-size: 20px;
+    color:blue;
 }
