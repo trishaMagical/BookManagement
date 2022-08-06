@@ -1,7 +1,58 @@
+:root{
+    --colorValue:brown;
+    --fontstyleValue:Georgia, 'Times New Roman', Times, serif;
+}
+
+
 .firstContainer{
     margin-top: 100px;
 }
 .labelContainer{
-    color: var(--brown)
+    color: var(--colorValue);
+    font-family: var(--fontstyleValue) ;
 
+}
+.todo-inputAdd{
+width: 20%;
+height: 40px;
+}
+.btn-add{
+    height: 40px;
+    background-color:green;
+    font-family:var(--fontstyleValue) ;
+    color: ghostwhite;
+    font-weight: bold;
+    border-color:ghostwhite ;
+}
+.styled-table{
+   width: 95%;
+   height: 40px;
+   margin-top: 20px;
+   margin: "auto";
+   padding: "15px";
+   margin-left: 40px;
+}
+.styled-table th{
+    border: 3px solid #ddd;
+    padding: 8px;
+    border-bottom-color: black;
+    border-bottom-width: 3px;
+    font-weight: bold;
+    font-size: 25px;
+
+}
+.styled-table tbody{
+    font-size: 15px;
+}
+.styled-table td {
+    border: 3px solid #ddd;
+    padding: 8px;
+}
+
+.categorylabelStyle{
+    width: 70%;
+}
+.styled-table tbody tr td{
+ font-size: 25px;
+ color: var( --colorValue);
 }
