@@ -1,3 +1,7 @@
+:root{
+    --colorValue:brown;
+    --fontstyleValue:Georgia, 'Times New Roman', Times, serif;
+}
 .inputbox-Style{
     background: transparent;
     border: none;
@@ -8,13 +12,13 @@
     
 }
 .loginText{
-    color: skyblue;
+    color:blue;
 
 }
 .labelContainer{
     font-size: 50px;
-    color: brown;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: var(--colorValue);
+    font-family:var( --fontstyleValue);
 }
 .mainContainer{
     font-size: 20px;

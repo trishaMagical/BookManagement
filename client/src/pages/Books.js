@@ -56,7 +56,7 @@ export default class Category extends Component {
         this.setState({ edit: id })
     }
 
-    editTodo = async (id) => {
+    editBook = async (id) => {
         const query = new URLSearchParams(this.props.location.search);
         let category = query.get("category")
         console.log("category", category);
@@ -88,7 +88,7 @@ export default class Category extends Component {
         data[ind] = obj
         this.setState({ data })
     }
-    deleteTodo = async (id) => {
+    deleteBook = async (id) => {
         const query = new URLSearchParams(this.props.location.search);
         let category = query.get("category")
         console.log("categoryname", category);
@@ -130,13 +130,15 @@ export default class Category extends Component {
                 <input
                     placeholder="Add a Book Name"
                     name="text"
-                    className="todo-input"
+                    className="todo-inputAdd"
                     value={this.state.input}
                     onChange={this.handleChange}
                 />
                 <button onClick={this.addTodo} className="btn-add">
                     Add Books
                 </button>
+                <br />
+                <br />
                <div className='tableclass'>
                <table className=" styled-table"  >
                <thead>
@@ -165,7 +167,7 @@ return (
                             onChange={(e) => this.handleEditChange(e, val.id)}
 
                         />
-                        <button  className="btn-save"onClick={() => this.editTodo(val.id)}>Save</button>
+                        <button  className="btn-save"onClick={() => this.editBook(val.id)}>Save</button>
                     </div>
 
                     :
@@ -177,7 +179,7 @@ return (
         <td>
             <button className="btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
 
-            <button className="btn-delete" onClick={() => this.deleteTodo(val.id)}>Delete</button>
+            <button className="btn-delete" onClick={() => this.deleteBook(val.id)}>Delete</button>
            
 
 

@@ -97,9 +97,6 @@ export default class Category extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
-                            {/* <li className="nav-item active">
-                        <a className="nav-link text-white" href="/Home">Profile </a>
-                    </li> */}
                             <li className="nav-item ">
                                 <a className="nav-link text-white" href="/Category">Category</a>
                             </li>
@@ -109,7 +106,7 @@ export default class Category extends Component {
                         </ul>
                     </div>
                 </nav>
-                <div style={{ marginTop: "100px" }}>
+                <div className='firstContainer'>
                     <label className='labelContainer'>Book Category</label>
 
                     <br />
@@ -117,25 +114,24 @@ export default class Category extends Component {
                         placeholder="Add a Book Category"
                         name="text"
                         className="todo-inputAdd"
-
                         onChange={this.handleChange}
                         value={this.state.input}
                     />
-                    <br/>
-                    <br />
                     <button className="btn-add" onClick={this.addCategory} >
                         Add Category
                     </button>
+                    <br />
+                    <br />
                     <div className='tableclass'>
 
 
-                        <table className=" styled-table" >
+                        <table className="styled-table" >
                             <thead>
 
                                 <tr >
-                                    <th style={{ textAlign: "center" }}>Category</th>
+                                    <th className='categorylabelStyle'>Category</th>
 
-                                    <th style={{ textAlign: "center" }}>Actions</th>
+                                    <th>Actions</th>
                                 </tr>
 
                             </thead>
@@ -145,7 +141,9 @@ export default class Category extends Component {
                                     return (
                                         <tr >
                                             <td key={index}>
-                                                {val.category}
+                                                <a className='categoryvalueStyle' href={"/Books?category=" + val.category}  >
+                                                    {val.category}
+                                                </a>
                                                 {
                                                     val.id === this.state.edit ?
                                                         <div>
@@ -170,16 +168,7 @@ export default class Category extends Component {
                                                 <button className="btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
 
                                                 <button className="btn-delete" onClick={() => this.deleteCategory(val.category)}>Delete</button>
-                                                <a href={"/Todo?category=" + val.category}  >
-                                                    <button className="btn-view">Go</button>
-                                                </a>
-
-
-
                                             </td>
-
-
-
                                         </tr>
                                     )
                                 })}
