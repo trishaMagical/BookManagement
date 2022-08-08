@@ -88,6 +88,13 @@ export default class Category extends Component {
         data[ind] = obj
         this.setState({ data })
     }
+    editCancel = ()=>{
+        const query = new URLSearchParams(this.props.location.search);
+        let category = query.get("category")
+        console.log("categoryname", category);
+
+        window.location = "Books?category=" + category
+    }
     deleteBook = async (id) => {
         const query = new URLSearchParams(this.props.location.search);
         let category = query.get("category")
@@ -141,7 +148,7 @@ export default class Category extends Component {
                 <br />
                <div className='tableclass'>
                <table className=" styled-table"  >
-               <thead>
+               <thead className='headersStyling'>
                                 <tr>
                                     <th style={{ textAlign: "center" }}>BookName</th>
 
@@ -167,7 +174,9 @@ return (
                             onChange={(e) => this.handleEditChange(e, val.id)}
 
                         />
+                        <br/>
                         <button  className="btn-save"onClick={() => this.editBook(val.id)}>Save</button>
+                        <button  className="btn-cancel"onClick={() => this.editCancel()}>Cancel</button>
                     </div>
 
                     :
@@ -177,8 +186,8 @@ return (
             }
         </td>
         <td>
+            
             <button className="btn-edit" onClick={() => this.edit(val.id)}>Edit</button>
-
             <button className="btn-delete" onClick={() => this.deleteBook(val.id)}>Delete</button>
            
 

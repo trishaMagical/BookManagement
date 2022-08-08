@@ -74,6 +74,13 @@ export default class Category extends Component {
         this.setState({ Index: -1 })
         window.location = "/Category"
     }
+    editCancel = ()=>{
+        const query = new URLSearchParams(this.props.location.search);
+        let category = query.get("category")
+        console.log("categoryname", category);
+
+        window.location = "/Category"
+    }
     deleteCategory = async (category) => {
 
         console.log("Trisha", this.state.input);
@@ -126,7 +133,7 @@ export default class Category extends Component {
 
 
                         <table className="styled-table" >
-                            <thead>
+                            <thead className="headersStyling">
 
                                 <tr >
                                     <th className='categorylabelStyle'>Category</th>
@@ -155,7 +162,9 @@ export default class Category extends Component {
                                                                 onChange={(e) => this.handleEditChange(e, val.id)}
 
                                                             />
+                                                            <br/>
                                                             <button className="btn-save" onClick={() => this.editCategory(val.id)}>Save</button>
+                                                            <button  className="btn-cancel"onClick={() => this.editCancel()}>Cancel</button>
                                                         </div>
 
                                                         :

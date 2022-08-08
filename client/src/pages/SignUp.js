@@ -132,7 +132,6 @@ const SignUp = (props) => {
             <label className='labelContainer'>Sign Up</label>
             <form style={{
                 margin: "auto",
-                // padding:"15px",
                 maxWidth: "400px",
                 alignContent: "center"
 
